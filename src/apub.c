@@ -42,9 +42,15 @@ static void pub (dds_entity_t dp)
   signal (SIGTERM, sigh);
   while (!interrupted)
   {
-    sample.ts = gettime ();
+    i11eperf_DP_t dataPoint;
+   
+    dataPoint.location.latitude = 2.0;
+    dataPoint.location.longitude = 20.0;
+    sample.content._d = 0;
+    sample.content._u.dPValue = dataPoint;
+    
     dds_write (wr, &sample);
-    ++sample.s;
+
 #if SLEEP_MS != 0
     dds_write_flush (wr); // just so we don't have to worry about BATCHING
     dds_sleepfor (DDS_MSECS (SLEEP_MS));

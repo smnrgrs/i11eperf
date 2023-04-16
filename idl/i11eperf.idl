@@ -7,89 +7,352 @@ module i11eperf {
      - All variants have different ideas of the representation of a time stamp,
        this avoids the need for different conversions in the different cases 
 
-     @final @data_representation(XCDR1): the spec breaks backwards compatibility, with some
+     @appendable @data_representation(XCDR2): the spec breaks backwards compatibility, with some
      implementations (OpenDDS, for example) following it, and some choosing not to break
      things just because a generally pretty low-quality spec says one must (Cyclone DDS).
 
      Keep all annotations on a single line starting with @topic for preproc-ospl-idl.gawk */
 
-  @topic @final @data_representation(XCDR1)
-  struct ou {
-    unsigned long long ts;
-    unsigned long s;
+  @nested @appendable @data_representation(XCDR2)
+  struct G128_t
+  {
+     unsigned long data1;
+     unsigned long data2;
+     unsigned long data3;
+     unsigned long data4;
   };
 
-  @topic @final @data_representation(XCDR1)
+  typedef sequence<G128_t> SeqG128_t;
+
+  typedef long long SecTime_t;
+  const long MAX_TYYYYYYY_XXXX_NAME_LENGTH = 64;
+  typedef string<MAX_TYYYYYYY_XXXX_NAME_LENGTH> TyyyyyyyxxxxLabel_t;
+  const long MAX_TYYYYYYY_XXXX_PYYYY_IMAGE_NAME_LENGTH = 64;
+  typedef string<MAX_TYYYYYYY_XXXX_PYYYY_IMAGE_NAME_LENGTH> TxxxxxxxxxxxxxxxxImageName_t;
+
+  typedef unsigned short Seconds_t;
+  typedef double Distance_t;
+
+  typedef unsigned long AxxxxSourceId_t;
+  typedef double MetresPerSecondSpeed_t;
+  typedef double MxxxxxAltitude_t;
+  typedef sequence<uint8> SeqTyyyyType_t;
+  typedef uint8 TyyyyType_t;
+  typedef unsigned long SxxxxxTyyyyID_t;
+  typedef double Coordinate_t;
+
+  const long MAX_AXXXX_SOUND_NAME_LENGTH = 32;
+  typedef string<MAX_AXXXX_SOUND_NAME_LENGTH> AxxxxSoundName_t;
+
+  @nested @appendable @data_representation(XCDR2)
+  struct Loc_t
+  {
+      Coordinate_t latitude;
+      Coordinate_t longitude;
+  };
+
+  typedef sequence<Loc_t> SeqLoc_t;
+
+  @appendable
+  enum ACond_t
+  {
+      ACNxxxxxxxx,
+      ACExxxxxxxx,
+      ACLxxxxxxxx,
+      ACIxxxxxxxx,
+      ACSxxxxxxxxxxxxxx,
+      ACIAxxxxxxxxxxxxx,
+      ACCxxxxxxxxxxxxxx
+  };
+
+  @appendable
+  enum ASev_t
+  {
+      ASIxxxxxxx,
+      ASBxxxxxxx,
+      ASAxxxxxxx,
+      ASRxxxxxxx
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct CxxTxxxValues_t
+  {
+      Distance_t                  aaaRyy;
+      Seconds_t                   bbbRyy;
+      Distance_t                  aaaAxxxx;
+      Seconds_t                   bbbAxxxx;
+  };
+
+  @appendable
+  enum FxxxxFyyyyyType_t
+  {
+      FxxxxFyyyyyNone,
+      FxxxxFyyyyyFxxxxx,
+      FxxxxFyyyyyGxxxxxxx
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct CxxxxxInstruction_t
+  {
+      G128_t                cxxxxxxxId;
+      FxxxxFyyyyyType_t     fxxxxxType;
+      uint16                pxxxxxNumber;
+  };
+  typedef sequence<CxxxxxInstruction_t> SeqCxxxxxInstructions_t;
+
+  @appendable
+  enum PIaaaaaaaaaaa_t
+  {
+      PIaaaaaaaaaaaaaaaaaaaaaa,
+      PIbbbbbbbbbbbbbbbbbbbbbb,
+      PIcccccccccccccccccccccc,
+      PIdddddddddddddddddddddd,
+      PIeeeeeeeeeeeeeeeeeeeeee,
+      PIffffffffffffffffffffff,
+      PIgggggggggggggggggggggg,
+      PIhhhhhhhhhhhhhhhhhhhhhh,
+      PIiiiiiiiiiiiiiiiiiiiiii,
+      PIjjjjjjjjjjjjjjjjjjjjjj,
+      PIkkkkkkkkkkkkkkkkkkkkkk,
+      PIllllllllllllllllllllll,
+      PImmmmmmmmmmmmmmmmmmmmmm,
+      PInnnnnnnnnnnnnnnnnnnnnn,
+      PIoooooooooooooooooooooo,
+      PIpppppppppppppppppppppp,
+      PIqqqqqqqqqqqqqqqqqqqqqq,
+      PIrrrrrrrrrrrrrrrrrrrrrr,
+      PIssssssssssssssssssssss,
+      PItttttttttttttttttttttt,
+      PIuuuuuuuuuuuuuuuuuuuuuu,
+      PIvvvvvvvvvvvvvvvvvvvvvv,
+      PIwwwwwwwwwwwwwwwwwwwwww,
+      PIxxxxxxxxxxxxxxxxxxxxxx,
+      PIyyyyyyyyyyyyyyyyyyyyyy,
+      PIzzzzzzzzzzzzzzzzzzzzza,
+      PIa111111111111111111111,
+      PIa222222222222222222222,
+      PIa333333333333333333333,
+      PIa444444444444444444444,
+      PIa555555555555555555555,
+      PIa666666666666666666666,
+      PIa777777777777777777777,
+      PIa888888888888888888888,
+      PIa999999999999999999999,
+      PIb111111111111111111111,
+      PIb222222222222222222222,
+      PIb333333333333333333333,
+      PIb444444444444444444444,
+      PIb555555555555555555555,
+      PIb666666666666666666666,
+      PIb777777777777777777777,
+      PIb888888888888888888888,
+      PIb999999999999999999999
+  };
+  typedef sequence<PIaaaaaaaaaaa_t> SeqPIaaaaaaaaaaa_t;
+
+  @appendable
+  enum VxxxxComparison_t
+  {
+      CxxxxxxxxxNxxx,
+      CxxxxxxxxxGxxxxxxTxxx,
+      CxxxxxxxxxLxxxTxxx
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct TxxxxReference_t
+  {
+      TyyyyType_t type;
+      SxxxxxTyyyyID_t id;
+  };
+
+  typedef sequence<TxxxxReference_t> SeqTxxxxReference_t;
+
+  @nested @appendable @data_representation(XCDR2)
+  struct AZSetup_t
+  {
+      ACond_t cond;
+      ASev_t sxxxxxxxxy;
+      Seconds_t rxxxxxDelay;
+      AxxxxSourceId_t sxxxxxId;
+      sequence<string> fxxxxxCxxxxxyCxxxs;
+      VxxxxComparison_t sxxxxComparison;
+      MetresPerSecondSpeed_t speed;
+      VxxxxComparison_t axxxxxxxComparison;
+      MxxxxxAltitude_t axxxxxxe;
+      boolean txxxxOxIxxxxxxt;
+      SeqTyyyyType_t disabledTyyyyTypes;
+      SeqTxxxxReference_t enabledTxxxxx;
+      SeqTxxxxReference_t disabledTxxxxx;
+      AxxxxSoundName_t sxxxxName;
+      SeqPIaaaaaaaaaaa_t pxxxxxxxxxIdentities;
+      CxxTxxxValues_t cxxTxxxValues;
+      SeqCxxxxxInstructions_t cxxxxxInstructions;
+  };
+
+  @appendable
+  enum TDType_t
+  {
+      TDTypeDP,
+      TDTypeRP,
+      TDTypePP,
+      TDTypeBd
+      //TDTypeMPr,
+      //TDTypeWPo,
+      //TDTypeRo
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct DP_t
+  {
+      Loc_t            location;
+      TxxxxxxxxxxxxxxxxImageName_t imageName;
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct RP_t
+  {
+      Loc_t                        location;
+      octet                        cxxxxxIndex;
+      octet                        fxxxxStyle;
+      octet                        lxxxWidth;
+      double                       rxxxRange;
+      double                       rxxxSxxxxxAngle;
+      double                       rxxxSxxxxxWidth;
+      octet                        rxxxType;
+      boolean                      rxxxVxxxxxe;
+      TxxxxxxxxxxxxxxxxImageName_t imageName;
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct PxxxxxxxxPxxxxZone_t
+  {
+      double                       rxxxe;
+      octet                        cxxxxxIxxxx;
+      octet                        fxxxSxxxx;
+      boolean                      vxxxxxx;
+      octet                        lxxxWxxxx;
+      AZSetup_t                    aZSetup;
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct PP_t
+  {
+      Loc_t            location;
+
+      PxxxxxxxxPxxxxZone_t         zxxxs[5];
+      TxxxxxxxxxxxxxxxxImageName_t imageName;
+  };
+
+  @nested @appendable @data_representation(XCDR2)
+  struct Bd_t
+  {
+      Loc_t                   location;
+      SeqLoc_t                pxxxxs;
+      octet                   cxxxxxIndex;
+      octet                   fxxxCxxxxxIndex;
+      octet                   fxxxSxxxe;
+      octet                   lxxxWxxxx;
+      boolean                 cxxxxxxDxxxxxxxx;
+      AZSetup_t               aZSetup;
+  };
+
+  @appendable @data_representation(XCDR2)
+  union TDUnion_t switch (TDType_t)
+  {
+  case TDTypeDP:
+      DP_t dPValue;
+  case TDTypeRP:
+      RP_t rPValue;
+  case TDTypePP:
+      PP_t pPValue;
+  case TDTypeBd:
+      Bd_t bdValue;
+  };
+
+  @topic @appendable @data_representation(XCDR2)
+  struct ou {
+    @key G128_t             id;
+    G128_t                  orxxxxxxxxId;
+    G128_t                  opxxxxxxxId;
+    G128_t                  crxxxxxId;
+    SecTime_t               crxxxxxxTime;
+    boolean                 rxxxxxxd;
+    G128_t                  vxxxxxLxxxxId;
+    TyyyyyyyxxxxLabel_t     label;
+    TDUnion_t               content;
+  };
+
+  @topic @appendable @data_representation(XCDR2)
   struct a32 {
     unsigned long long ts;
     unsigned long s;
     octet xary[32 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a128 {
     unsigned long long ts;
     unsigned long s;
     octet xary[128 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a1024 {
     unsigned long long ts;
     unsigned long s;
     octet xary[1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a16k {
     unsigned long long ts;
     unsigned long s;
     octet xary[16*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a48k {
     unsigned long long ts;
     unsigned long s;
     octet xary[48*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a64k {
     unsigned long long ts;
     unsigned long s;
     octet xary[64*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a1M {
     unsigned long long ts;
     unsigned long s;
     octet xary[1024*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a2M {
     unsigned long long ts;
     unsigned long s;
     octet xary[2*1024*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a4M {
     unsigned long long ts;
     unsigned long s;
     octet xary[4*1024*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct a8M {
     unsigned long long ts;
     unsigned long s;
     octet xary[8*1024*1024 - 12];
   };
 
-  @topic @final @data_representation(XCDR1)
+  @topic @appendable @data_representation(XCDR2)
   struct seq {
     unsigned long long ts;
     unsigned long s;

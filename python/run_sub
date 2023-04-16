@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p idl
+cp ../idl/i11eperf.idl ./idl/
+/dds/bin/idlc -x appendable -l py idl/i11eperf.idl
+python3 sub.py

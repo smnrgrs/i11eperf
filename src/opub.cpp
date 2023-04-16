@@ -41,7 +41,8 @@ static void pub(DomainParticipant_var dp)
   // - with only qos.representation, we get what we want
   // - with data_representation and qos.representation, we get what we want
   qos.representation.value.length(1);
-  qos.representation.value[0] = DDS::XCDR_DATA_REPRESENTATION;
+  //qos.representation.value[0] = DDS::XCDR_DATA_REPRESENTATION;
+  qos.representation.value[0] = DDS::XCDR2_DATA_REPRESENTATION;
   qos.history.kind = HISTORY_KIND;
   qos.history.depth = HISTORY_DEPTH;
   qos.reliability.kind = RELIABLE_RELIABILITY_QOS;
@@ -51,15 +52,23 @@ static void pub(DomainParticipant_var dp)
   DDS::DataWriter *wrw = pub->create_datawriter(tp, qos, 0, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
   CONCAT(i11eperf::DATATYPE, DataWriter) *wr = NARROW_W(wrw);
 
+  i11eperf::G128_t id1;
+  id1.data1 = 123;
+  id1.data2 = 456;
+  id1.data3 = 123;
+  id1.data4 = 456;
+
   signal(SIGTERM, sigh);
   while (!interrupted)
   {
-    sample.ts = gettime();
+    i11eperf::DP_t dp;
+    dp.location.latitude = 2.0;
+    dp.location.longitude = 24.0;
+
     wr->write(sample, HANDLE_NIL);
-    ++sample.s;
-#if SLEEP_MS != 0
-    std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_MS));
-#endif
+//#if SLEEP_MS != 0
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+//#endif
   }
 
   pub->delete_datawriter(wrw);

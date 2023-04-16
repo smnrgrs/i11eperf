@@ -46,7 +46,7 @@ public:
     SampleInfo si;
     if ((rc = rd->take_next_sample(x, si)) == RETCODE_OK && si.valid_data) {
       int64_t tnow = gettime();
-      stats_.update(x.s, bytes(x), (tnow-tref_)/1e9, (tnow-x.ts)/1e9);
+      printf("Received\n");
     }
     stats_.report();
   }

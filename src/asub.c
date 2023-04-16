@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 #include "dds/dds.h"
 #include "i11eperf_a.h"
 #include "config.h"
@@ -134,7 +135,9 @@ static void on_data_available(dds_entity_t rd, void *varg)
     int64_t tnow = gettime ();
     for (int i = 0; i < n; i++)
       if (si[i].valid_data)
-        Stats_update(stats, xs[i].s, bytes(&xs[i]), (tnow - tref) / 1e9, (tnow - xs[i].ts) / 1e9);
+      {
+        printf("Received \n");
+      }
   } while (n == N);
   Stats_report (stats);
 }
