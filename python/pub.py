@@ -5,7 +5,7 @@ from cyclonedds.topic import Topic
 from cyclonedds.pub import DataWriter
 from cyclonedds.util import duration
 
-from i11eperf import a128, ou, TDUnion_t, DP_t, G128_t, Loc_t
+from i11eperf import a128, ou, TDUnion_t, DP_t, Gxxx128xxx_t, Loc_t
 
 
 
@@ -23,9 +23,9 @@ writer = DataWriter(domain_participant, topic)
 
 
 pos1 = Loc_t(latitude = 51.0, longitude=-1.0)
-dp1 = DP_t(location=pos1, imageName='ABC')
+dp1 = DP_t(lxxxxxxn=pos1, imageName='ABC')
 dp1_data_union = TDUnion_t(dPValue=dp1)
-guid1 = G128_t(data1=1234, data2=5678, data3=1234, data4=5678)
+guid1 = Gxxx128xxx_t(data1=1234, data2=5678, data3=1234, data4=5678)
 
 i = 1
 while i < 60:

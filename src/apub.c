@@ -44,10 +44,10 @@ static void pub (dds_entity_t dp)
   {
     i11eperf_DP_t dataPoint;
    
-    dataPoint.location.latitude = 2.0;
-    dataPoint.location.longitude = 20.0;
+    dataPoint.lxxxxxxn.latitude = 2.0;
+    dataPoint.lxxxxxxn.longitude = 20.0;
     sample.content._d = 0;
-    sample.content._u.dPValue = dataPoint;
+    sample.content._u.dPValux = dataPoint;
     
     dds_write (wr, &sample);
 

@@ -52,7 +52,7 @@ static void pub(DomainParticipant_var dp)
   DDS::DataWriter *wrw = pub->create_datawriter(tp, qos, 0, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
   CONCAT(i11eperf::DATATYPE, DataWriter) *wr = NARROW_W(wrw);
 
-  i11eperf::G128_t id1;
+  i11eperf::Gxxx128xxx_t id1;
   id1.data1 = 123;
   id1.data2 = 456;
   id1.data3 = 123;
@@ -62,8 +62,8 @@ static void pub(DomainParticipant_var dp)
   while (!interrupted)
   {
     i11eperf::DP_t dp;
-    dp.location.latitude = 2.0;
-    dp.location.longitude = 24.0;
+    dp.lxxxxxxn.latitude = 2.0;
+    dp.lxxxxxxn.longitude = 24.0;
 
     wr->write(sample, HANDLE_NIL);
 //#if SLEEP_MS != 0

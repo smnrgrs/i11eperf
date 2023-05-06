@@ -296,7 +296,7 @@ module i11eperf {
   union TDUnion_t switch (TxxxxxxlDxxxType_t)
   {
   case TxxxxxxlDxxxTypeDxxxPxxxt:
-      DP_t dPValux;
+      DP_t dPValue;
   case TxxxxxxlDxxxTypeRxxxxPxxxt:
       RP_t rPValue;
   case TxxxxxxlDxxxTypePxxxxxxxdPxxxt:
